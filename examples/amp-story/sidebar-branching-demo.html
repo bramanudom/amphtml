@@ -26,15 +26,15 @@
         text-shadow: 3px 3px rgba(0, 0, 0, 0.5);
         text-align: center;
         vertical-align: middle;
-        line-height: 180px;
+        line-height: 100px;
       }
       p.description {
         color: white;
-        background-color: rgba(0, 0, 0, 0.7);
         font-size: large;
+        padding: 5px !important;
       }
       amp-img {
-        border: 2px solid black;
+        border: 2px solid rgba(0, 0, 0, 0.7);
 
       }
       button.btn{
@@ -50,7 +50,7 @@
         grid-template-rows: 50% 50%;
       }
       div.custom {
-        padding: 10px !important;
+        padding: 5px !important;
       }
       .banner-text {
         text-align: center;
@@ -58,7 +58,16 @@
         line-height: 5em;
       }
       div.title {
-        /*background-color: rgba(0, 0, 0, 0.88);*/
+        padding: 0px !important;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 10px !important;
+      }
+      div.desc-wrapper{
+        padding: 5px !important;
+      }
+      li {
+        font-family: sans-serif;
+        font-size: medium;
       }
     </style>
   </head>
@@ -73,7 +82,6 @@
         poster-square-src="https://picsum.photos/1600/1600?image=981">
       <amp-sidebar id="sidebar1" layout="nodisplay" >
         <ul>
-          <li on="tap:story.goToPage(id=cover)">Cover</li>
           <li on="tap:story.goToPage(id=milk)">Classic Milk</li>
           <li on="tap:story.goToPage(id=taro)">Taro</li>
           <li on="tap:story.goToPage(id=jasmine)">Jasmine</li>
@@ -85,37 +93,40 @@
           <amp-video autoplay layout="fill" poster="https://wellandfull.com/wp-content/uploads/2016/06/wellandfull-37.jpg">
           </amp-video>
         </amp-story-grid-layer>
-        <amp-story-grid-layer template="verticakl" >
-          <div class="title" >
-          <h1 class="hello-world">What's the best Boba?</h1>
+        <amp-story-grid-layer template="vertical" >
+          <div class="title">
+          <h1 class="hello-world">Pet's Best Boba List</h1>
+          <div class="desc-wrapper"> <p class="description"> Bubble tea, or Boba, is taking the world by storm. The drink originates from Taiwan, but has evolved since its iced milk days. The various experiences of those a part of the Asian Diaspora has influenced a cornucopia of new flavors and textures.
+
+          <br><br>Click on what you think the best flavor is and see what Pet thinks! </br></br></p> </div>
         </div>
-          <div >
+          <div>
             <div class="wrapper">
             <div class="custom">
-            <amp-img src="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg"
-                on="tap:story.goToPage(id=milk)"
-                width="320" height="280"
+            <amp-img src="https://wallpapercave.com/wp/v2Z0L5h.jpg"
+                on="tap:story.goToPage(id=jasmine)"
+                width="300" height="260"
                 layout="responsive">
             </amp-img>
           </div>
           <div class="custom">
             <amp-img src="https://www.eatthis.com/wp-content/uploads//media/images/ext/618688332/taro-what-is-it.jpg"
                 on="tap:story.goToPage(id=taro)"
-                width="320" height="280"
+                width="300" height="260"
                 layout="responsive">
             </amp-img>
           </div>
           <div class="custom">
-            <amp-img src="https://wallpapercave.com/wp/v2Z0L5h.jpg"
-                on="tap:story.goToPage(id=jasmine)"
-                width="320" height="280"
+            <amp-img src="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg"
+                on="tap:story.goToPage(id=milk)"
+                width="300" height="260"
                 layout="responsive">
             </amp-img>
           </div>
           <div class="custom">
             <amp-img src="https://31p86334w2bvkz0249eyr0cr-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/the-best-cream-cheese-frosting.jpg"
                 on="tap:story.goToPage(id=cheese)"
-                width="320" height="280"
+                width="300" height="260"
                 layout="responsive">
             </amp-img>
           </div>
@@ -124,54 +135,86 @@
       </amp-story-grid-layer>
       </amp-story-page>
 
-      <amp-story-page id="milk">
-        <amp-story-grid-layer template="fill">
-          <amp-video autoplay layout="fill" poster="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg">
-          </amp-video>
-        </amp-story-grid-layer>
-        <amp-story-grid-layer template="vertical">
-          <h1 class="hello-world">Classic milk tea</h1>
-          <p class="description">The classic milk tea, often sweetened with honey or with honey boba is a classic go to. Boba experts say this is the drink that will establish a boba shop's credibility.</p>
-          <button class="btn" on="tap:story.goToPage(id=cover)"> Go Back to Cover </button>
-        </amp-story-grid-layer>
-
-      </amp-story-page>
-
-       <amp-story-page id="taro">
-        <amp-story-grid-layer template="fill">
-          <amp-video autoplay layout="fill" poster="https://www.eatthis.com/wp-content/uploads//media/images/ext/618688332/taro-what-is-it.jpg">
-          </amp-video>
-        </amp-story-grid-layer>
-        <amp-story-grid-layer template="vertical">
-          <h1 class="hello-world">Taro (Ube)</h1>
-          <p class="description">Taro, or Ube, is a root vegetable. With its distinctive purple color and subtle taste, taro boba can be a very divisive flavor.</p>
-          <button class="btn" on="tap:story.goToPage(id=cover)"> Go Back to Cover </button>
-        </amp-story-grid-layer>
-
-      </amp-story-page>
-
-      <amp-story-page id="jasmine">
+      <amp-story-page id="jasmine" advance-to="end" >
         <amp-story-grid-layer template="fill">
           <amp-video autoplay layout="fill" poster="https://wallpapercave.com/wp/v2Z0L5h.jpg">
           </amp-video>
         </amp-story-grid-layer>
         <amp-story-grid-layer template="vertical">
+          <div class="title">
           <h1 class="hello-world">Jasmine Milk</h1>
-          <p class="description">Jasmine milk tea, often made with green tea, is a refreshing alternative to the classic milk tea flavor. Try it iced on a summer day and hot on a winter night. Try fruit jellies in lieu of boba for a fruity delight!</p>
-            <button class="btn" on="tap:story.goToPage(id=cover)"> Go Back to Cover </button>
+          <h4> Yes! You got it.</h4>
+          <div class="desc-wrapper"><p class="description">Jasmine milk tea, often made with green tea, is a refreshing alternative to the classic milk tea flavor. Try it iced on a summer day and hot on a winter night. Try fruit jellies in lieu of boba for a fruity delight!
+
+            <br><br> This is Pet's all-time-favourite. With a lightly floral taste, she thinks jasmine milk tea is the ideal refreshing drink of choice!!</p></div>
+
+          </div>
+
         </amp-story-grid-layer>
 
       </amp-story-page>
 
-      <amp-story-page id="cheese">
+       <amp-story-page id="taro" advance-to="cover" >
+        <amp-story-grid-layer template="fill">
+          <amp-video autoplay layout="fill" poster="https://www.eatthis.com/wp-content/uploads//media/images/ext/618688332/taro-what-is-it.jpg">
+          </amp-video>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <div class="title">
+          <h1 class="hello-world">Taro (Ube)</h1>
+          <h4> Nice try, but no! </h4>
+
+          <div class="desc-wrapper"> <p class="description">Taro, or Ube, is a root vegetable. With its distinctive purple color and subtle taste, taro boba can be a very divisive flavor.
+            <br><br>Pet thinks Taro boba is delicious but is wary about the usage of heavily processed Taro powder. Pet recommends new boba go-ers to start off with real tea drinks first!.</p></div>
+
+        </div>
+        </amp-story-grid-layer>
+
+      </amp-story-page>
+
+      <amp-story-page id="milk" advance-to="cover">
+        <amp-story-grid-layer template="fill">
+          <amp-video autoplay layout="fill" poster="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg">
+          </amp-video>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <div class="title"><h1 class="hello-world">Classic milk tea</h1>
+          <h4> Nice try, but no! </h4>
+          <div class="desc-wrapper"><p class="description">The classic milk tea, often sweetened with honey or with honey boba is a classic go to. Boba experts say this is the drink that will establish a boba shop's credibility. While Pet thinks milk tea is a great safe best, milk teas often lean too sweet.
+
+            <br><br>When Pet is feeling a black tea, she usually goes with a cream for a better balance of sweetness!</p></div>
+          </div>
+        </amp-story-grid-layer>
+
+      </amp-story-page>
+
+      <amp-story-page id="cheese" advance-to="cover">
         <amp-story-grid-layer template="fill">
           <amp-video autoplay layout="fill" poster="https://31p86334w2bvkz0249eyr0cr-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/the-best-cream-cheese-frosting.jpg">
           </amp-video>
         </amp-story-grid-layer>
         <amp-story-grid-layer template="vertical">
+          <div class="title">
           <h1 class="hello-world">Cheese Tea</h1>
-          <p class="description">Cheese tea is the newest contender in the boba world. Cheese tea is often a green or black tea (sometimes fruity) with a layer of salty cream cheese foam at the very top. When mixed together, you're able to taste this slightly sweet, slight salty, and very delicious concoction.</p>
-                  <button class="btn" on="tap:story.goToPage(id=cover)"> Go Back to Cover </button>
+          <h4> Nice try, but no! </h4>
+          <div class="desc-wrapper"><p class="description">Cheese tea is the newest contender in the boba world. Cheese tea is often a green or black tea (sometimes fruity) with a layer of salty cream cheese foam at the very top. When mixed together, you're able to taste this slightly sweet, slight salty, and very delicious concoction.
+            <br><br>Pet thinks this is a great choice for the adventurous people, but not boba's best.</p></div>
+        </div>
+                </div>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+      <amp-story-page id="end">
+        <amp-story-grid-layer template="fill">
+          <amp-video autoplay layout="fill" poster="https://wellandfull.com/wp-content/uploads/2016/06/wellandfull-37.jpg">
+          </amp-video>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <div class="title">
+          <h1 class="hello-world">Thanks for playing!</h1>
+          <div class="desc-wrapper"><p class="description">Now go out and drink Boba!</p></div>
+        </div>
+                </div>
         </amp-story-grid-layer>
       </amp-story-page>
 
