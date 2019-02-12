@@ -1,0 +1,134 @@
+<!doctype html>
+<html amp lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-story"
+        src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <title>STAMP Sidebar and Branching</title>
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="canonical" href="./template-vertical.html">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <style amp-custom>
+      amp-story-page {
+        background: black;
+        color: white;
+        font-family: sans-serif;
+      }
+      .i-amphtml-story-spinner-container {
+        /* Hide the spinner for loading pages, since this causes flakes */
+        display: none;
+      }
+      h1.hello-world {
+        color: white;
+        text-shadow: 3px 3px rgba(0, 0, 0, 0.5);
+      }
+      p.description {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.7);
+        font-size: 32px;
+      }
+      img.btn {
+        width: 200px;
+        height: 100px;
+      }
+      button.btn{
+        width: 200px;
+        height: 100px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-color: rgba(0, 0, 0, 0.7);
+        color:white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <amp-story
+        id="story"
+        standalone publisher="AMP Team" title="Sidebar Branching Demo"
+        publisher-logo-src="https://www.ampproject.org/static/img/icons/120.png"
+        poster-portrait-src="https://picsum.photos/900/1600?image=981"
+        poster-landscape-src="https://picsum.photos/1600/900?image=981"
+        poster-square-src="https://picsum.photos/1600/1600?image=981">
+      <amp-sidebar id="sidebar1" layout="nodisplay" >
+        <ul>
+          <li on="tap:story.goToPage(id=cover)">Cover</li>
+          <li on="tap:story.goToPage(id=milk)">Classic Milk</li>
+          <li on="tap:story.goToPage(id=taro)">Taro</li>
+          <li on="tap:story.goToPage(id=jasmine)">Jasmine</li>
+          <li on="tap:story.goToPage(id=cheese)">Cheese Tea</li>
+        </ul>
+      </amp-sidebar>
+      <amp-story-page id="cover">
+        <amp-story-grid-layer template="fill">
+          <amp-video autoplay layout="fill" poster="https://wellandfull.com/wp-content/uploads/2016/06/wellandfull-37.jpg">
+          </amp-video>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <h1 class="hello-world">What's the best bubble tea flavor?</h1>
+          <p class="description">Bubble tea, or Boba, is taking the world by storm. Sources say the drink originated in Taiwan, but the drink has evolved since its iced milk days. The various experiences of those a part of the Asian Diaspora has brought with it a cornucopia of new flavors and experiences. Find your new favourite today! </p>
+
+          <button class="btn" id="milk" on="tap:story.goToPage(id=milk)"><img class="btn" src="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg"></button>
+          <button class="btn" id="taro" on="tap:story.goToPage(id=taro)"><img class="btn" src="https://www.eatthis.com/wp-content/uploads//media/images/ext/618688332/taro-what-is-it.jpg"></button>
+          <button class="btn" id="jasmine" on="tap:story.goToPage(id=jasmine)"><img class="btn" src="https://wallpapercave.com/wp/v2Z0L5h.jpg"></button>
+          <button class="btn" id="cheese" on="tap:story.goToPage(id=cheese)"><img class="btn" src="https://31p86334w2bvkz0249eyr0cr-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/the-best-cream-cheese-frosting.jpg"></button>
+
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+      <amp-story-page id="milk">
+        <amp-story-grid-layer template="fill">
+          <amp-video autoplay layout="fill" poster="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg">
+          </amp-video>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <h1 class="hello-world">Classic milk tea</h1>
+          <p class="description">The classic milk tea, often sweetened with honey or with honey boba is a classic go to. Boba experts say this is the drink that will establish a boba shop's credibility.</p>
+          <button class="btn" on="tap:story.goToPage(id=cover)"> Go Back to Cover </button>
+        </amp-story-grid-layer>
+
+      </amp-story-page>
+
+       <amp-story-page id="taro">
+        <amp-story-grid-layer template="fill">
+          <amp-video autoplay layout="fill" poster="https://www.eatthis.com/wp-content/uploads//media/images/ext/618688332/taro-what-is-it.jpg">
+          </amp-video>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <h1 class="hello-world">Taro (Ube)</h1>
+          <p class="description">Taro, or Ube, is a root vegetable. With its distinctive purple color and subtle taste, taro boba can be a very divisive flavor.</p>
+          <button class="btn" on="tap:story.goToPage(id=cover)"> Go Back to Cover </button>
+        </amp-story-grid-layer>
+
+      </amp-story-page>
+
+      <amp-story-page id="jasmine">
+        <amp-story-grid-layer template="fill">
+          <amp-video autoplay layout="fill" poster="https://wallpapercave.com/wp/v2Z0L5h.jpg">
+          </amp-video>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <h1 class="hello-world">Jasmine Milk</h1>
+          <p class="description">Jasmine milk tea, often made with green tea, is a refreshing alternative to the classic milk tea flavor. Try it iced on a summer day and hot on a winter night. Try fruit jellies in lieu of boba for a fruity delight!</p>
+            <button class="btn" on="tap:story.goToPage(id=cover)"> Go Back to Cover </button>
+        </amp-story-grid-layer>
+
+      </amp-story-page>
+
+      <amp-story-page id="cheese">
+        <amp-story-grid-layer template="fill">
+          <amp-video autoplay layout="fill" poster="https://31p86334w2bvkz0249eyr0cr-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/the-best-cream-cheese-frosting.jpg">
+          </amp-video>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="vertical">
+          <h1 class="hello-world">Cheese Tea</h1>
+          <p class="description">Cheese tea is the newest contender in the boba world. Cheese tea is often a green or black tea (sometimes fruity) with a layer of salty cream cheese foam at the very top. When mixed together, you're able to taste this slightly sweet, slight salty, and very delicious concoction.</p>
+                  <button class="btn" on="tap:story.goToPage(id=cover)"> Go Back to Cover </button>
+        </amp-story-grid-layer>
+      </amp-story-page>
+
+    </amp-story>
+  </body>
+
