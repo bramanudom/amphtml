@@ -24,15 +24,18 @@
       h1.hello-world {
         color: white;
         text-shadow: 3px 3px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        vertical-align: middle;
+        line-height: 180px;
       }
       p.description {
         color: white;
         background-color: rgba(0, 0, 0, 0.7);
-        font-size: 32px;
+        font-size: large;
       }
-      img.btn {
-        width: 200px;
-        height: 100px;
+      amp-img {
+        border: 2px solid black;
+
       }
       button.btn{
         width: 200px;
@@ -40,6 +43,22 @@
         background-color: rgba(0, 0, 0, 0.7);
         border-color: rgba(0, 0, 0, 0.7);
         color:white;
+      }
+      .wrapper {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
+      }
+      div.custom {
+        padding: 10px !important;
+      }
+      .banner-text {
+        text-align: center;
+        background-color: #000;
+        line-height: 5em;
+      }
+      div.title {
+        /*background-color: rgba(0, 0, 0, 0.88);*/
       }
     </style>
   </head>
@@ -66,16 +85,43 @@
           <amp-video autoplay layout="fill" poster="https://wellandfull.com/wp-content/uploads/2016/06/wellandfull-37.jpg">
           </amp-video>
         </amp-story-grid-layer>
-        <amp-story-grid-layer template="vertical">
-          <h1 class="hello-world">What's the best bubble tea flavor?</h1>
-          <p class="description">Bubble tea, or Boba, is taking the world by storm. Sources say the drink originated in Taiwan, but the drink has evolved since its iced milk days. The various experiences of those a part of the Asian Diaspora has brought with it a cornucopia of new flavors and experiences. Find your new favourite today! </p>
-
-          <button class="btn" id="milk" on="tap:story.goToPage(id=milk)"><img class="btn" src="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg"></button>
-          <button class="btn" id="taro" on="tap:story.goToPage(id=taro)"><img class="btn" src="https://www.eatthis.com/wp-content/uploads//media/images/ext/618688332/taro-what-is-it.jpg"></button>
-          <button class="btn" id="jasmine" on="tap:story.goToPage(id=jasmine)"><img class="btn" src="https://wallpapercave.com/wp/v2Z0L5h.jpg"></button>
-          <button class="btn" id="cheese" on="tap:story.goToPage(id=cheese)"><img class="btn" src="https://31p86334w2bvkz0249eyr0cr-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/the-best-cream-cheese-frosting.jpg"></button>
-
-        </amp-story-grid-layer>
+        <amp-story-grid-layer template="verticakl" >
+          <div class="title" >
+          <h1 class="hello-world">What's the best Boba?</h1>
+        </div>
+          <div >
+            <div class="wrapper">
+            <div class="custom">
+            <amp-img src="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg"
+                on="tap:story.goToPage(id=milk)"
+                width="320" height="280"
+                layout="responsive">
+            </amp-img>
+          </div>
+          <div class="custom">
+            <amp-img src="https://www.eatthis.com/wp-content/uploads//media/images/ext/618688332/taro-what-is-it.jpg"
+                on="tap:story.goToPage(id=taro)"
+                width="320" height="280"
+                layout="responsive">
+            </amp-img>
+          </div>
+          <div class="custom">
+            <amp-img src="https://wallpapercave.com/wp/v2Z0L5h.jpg"
+                on="tap:story.goToPage(id=jasmine)"
+                width="320" height="280"
+                layout="responsive">
+            </amp-img>
+          </div>
+          <div class="custom">
+            <amp-img src="https://31p86334w2bvkz0249eyr0cr-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/the-best-cream-cheese-frosting.jpg"
+                on="tap:story.goToPage(id=cheese)"
+                width="320" height="280"
+                layout="responsive">
+            </amp-img>
+          </div>
+        </div>
+        </div>
+      </amp-story-grid-layer>
       </amp-story-page>
 
       <amp-story-page id="milk">
