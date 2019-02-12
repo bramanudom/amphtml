@@ -35,7 +35,10 @@
       }
       amp-img {
         border: 2px solid rgba(0, 0, 0, 0.7);
+      }
 
+      amp-img:hover {
+        background-color: rgba(0, 0, 0, 0.3) !important;
       }
       button.btn{
         width: 200px;
@@ -50,7 +53,7 @@
         grid-template-rows: 50% 50%;
       }
       div.custom {
-        padding: 5px !important;
+        padding: 2px !important;
       }
       .banner-text {
         text-align: center;
@@ -68,6 +71,11 @@
       li {
         font-family: sans-serif;
         font-size: medium;
+      }
+      .centered {
+        text-align:center;
+        transform: translate(0, -150%);
+        background-color: rgba(0, 0, 0, 0.5)
       }
     </style>
   </head>
@@ -90,8 +98,8 @@
       </amp-sidebar>
       <amp-story-page id="cover">
         <amp-story-grid-layer template="fill">
-          <amp-video autoplay layout="fill" poster="https://wellandfull.com/wp-content/uploads/2016/06/wellandfull-37.jpg">
-          </amp-video>
+          <amp-img  layout="fill" src="https://wellandfull.com/wp-content/uploads/2016/06/wellandfull-37.jpg">
+          </amp-img>
         </amp-story-grid-layer>
         <amp-story-grid-layer template="vertical" >
           <div class="title">
@@ -108,6 +116,7 @@
                 width="300" height="260"
                 layout="responsive">
             </amp-img>
+            <div class="centered">Jasmine Tea</div>
           </div>
           <div class="custom">
             <amp-img src="https://www.eatthis.com/wp-content/uploads//media/images/ext/618688332/taro-what-is-it.jpg"
@@ -115,6 +124,7 @@
                 width="300" height="260"
                 layout="responsive">
             </amp-img>
+            <div class="centered">Taro Tea</div>
           </div>
           <div class="custom">
             <amp-img src="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg"
@@ -122,6 +132,7 @@
                 width="300" height="260"
                 layout="responsive">
             </amp-img>
+            <div class="centered">Milk Tea</div>
           </div>
           <div class="custom">
             <amp-img src="https://31p86334w2bvkz0249eyr0cr-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/the-best-cream-cheese-frosting.jpg"
@@ -129,6 +140,7 @@
                 width="300" height="260"
                 layout="responsive">
             </amp-img>
+            <div class="centered">Cheese Tea</div>
           </div>
         </div>
         </div>
@@ -137,8 +149,8 @@
 
       <amp-story-page id="jasmine" advance-to="end" >
         <amp-story-grid-layer template="fill">
-          <amp-video autoplay layout="fill" poster="https://wallpapercave.com/wp/v2Z0L5h.jpg">
-          </amp-video>
+          <amp-img  layout="fill" src="https://wallpapercave.com/wp/v2Z0L5h.jpg">
+          </amp-img>
         </amp-story-grid-layer>
         <amp-story-grid-layer template="vertical">
           <div class="title">
@@ -156,8 +168,8 @@
 
        <amp-story-page id="taro" advance-to="cover" >
         <amp-story-grid-layer template="fill">
-          <amp-video autoplay layout="fill" poster="https://www.eatthis.com/wp-content/uploads//media/images/ext/618688332/taro-what-is-it.jpg">
-          </amp-video>
+          <amp-img  layout="fill" src="https://www.eatthis.com/wp-content/uploads//media/images/ext/618688332/taro-what-is-it.jpg">
+          </amp-img>
         </amp-story-grid-layer>
         <amp-story-grid-layer template="vertical">
           <div class="title">
@@ -174,8 +186,8 @@
 
       <amp-story-page id="milk" advance-to="cover">
         <amp-story-grid-layer template="fill">
-          <amp-video autoplay layout="fill" poster="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg">
-          </amp-video>
+          <amp-img  layout="fill" src="https://www.wallpaperup.com/uploads/wallpapers/2013/08/25/138738/809a40427b80a3438fa2d889f47c9f82.jpg">
+          </amp-img>
         </amp-story-grid-layer>
         <amp-story-grid-layer template="vertical">
           <div class="title"><h1 class="hello-world">Classic milk tea</h1>
@@ -190,8 +202,8 @@
 
       <amp-story-page id="cheese" advance-to="cover">
         <amp-story-grid-layer template="fill">
-          <amp-video autoplay layout="fill" poster="https://31p86334w2bvkz0249eyr0cr-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/the-best-cream-cheese-frosting.jpg">
-          </amp-video>
+          <amp-img layout="fill" src="https://31p86334w2bvkz0249eyr0cr-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/the-best-cream-cheese-frosting.jpg">
+          </amp-img>
         </amp-story-grid-layer>
         <amp-story-grid-layer template="vertical">
           <div class="title">
@@ -206,8 +218,8 @@
 
       <amp-story-page id="end">
         <amp-story-grid-layer template="fill">
-          <amp-video autoplay layout="fill" poster="https://wellandfull.com/wp-content/uploads/2016/06/wellandfull-37.jpg">
-          </amp-video>
+          <amp-img  layout="fill" src="https://wellandfull.com/wp-content/uploads/2016/06/wellandfull-37.jpg">
+          </amp-img>
         </amp-story-grid-layer>
         <amp-story-grid-layer template="vertical">
           <div class="title">
