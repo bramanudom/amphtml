@@ -84,6 +84,7 @@ import {
   childElementByTag,
   childElements,
   closest,
+  closestAncestorElementBySelector,
   createElementWithAttributes,
   escapeCssSelectorIdent,
   isRTL,
@@ -870,23 +871,33 @@ export class AmpStory extends AMP.BaseElement {
    * @private
    */
   getInitialPageId_(firstPageEl) {
-    const isActualPage =
-      pageId =>
-        findIndex(this.pages_, page => page.element.id === pageId) >= 0;
+    // const isActualPage =
+    //   pageId =>
+    //     findIndex(this.pages_, page => page.element.id === pageId) >= 0;
     const historyPage = getHistoryState(this.win, HistoryState.PAGE_ID);
 
     if (isExperimentOn(this.win, 'amp-story-branching')) {
       const maybePageId = parseQueryString(this.win.location.hash)['page'];
-      if (maybePageId && isActualPage(maybePageId)) {
+      if (maybePageId && this.isActualPage_(maybePageId)) {
         return maybePageId;
       }
     }
 
-    if (historyPage && isActualPage(historyPage)) {
+    if (historyPage && this.isActualPage_(historyPage)) {
       return historyPage;
     }
 
     return firstPageEl.id;
+  }
+
+ /**
+  * Checks to see if a page ID refers to an actual page in the story.
+  * @param {!string} pageId
+  * @return {!boolean}
+  * @private
+  */
+  isActualPage_(pageId) {
+    return findIndex(this.pages_, page => page.element.id === pageId) >= 0;
   }
 
   /**
@@ -2216,6 +2227,36 @@ export class AmpStory extends AMP.BaseElement {
     if (!this.sidebar_) {
       return;
     }
+    if (isExperimentOn(this.win,'amp-story-branching')) {
+      this.sidebar_.addEventListener('click', e => {
+        const actions = Services.actionServiceForDoc(this.element);
+
+        if (e.target.tagName === 'A') {
+          const fragmentPageId =
+            parseQueryString(e.target.getAttribute('href'))['page'];
+
+          if (this.isActualPage_(fragmentPageId)) {
+            this.switchTo_(fragmentPageId, NavigationDirection.NEXT);
+          }
+
+          actions.execute(this.sidebar_, 'close', /* args */ null,
+              /* source */ null, /* caller */ null, /* event */ null,
+              ActionTrust.HIGH);
+          this.closeOpacityMask_();
+
+        } else {
+          const actionTarget =
+            closestAncestorElementBySelector(
+              dev().assertElement(e.target), '[on*=goToPage]');
+          if (actionTarget) {
+            actions.execute(this.sidebar_, 'close', /* args */ null,
+                /* source */ null, /* caller */ null, /* event */ null,
+                ActionTrust.HIGH);
+            this.closeOpacityMask_();
+          }
+        }
+      });
+    }
 
     this.mutateElement(() => {
       this.sidebar_.classList.add(SIDEBAR_CLASS_NAME);
@@ -2225,12 +2266,12 @@ export class AmpStory extends AMP.BaseElement {
     this.storeService_.dispatch(Action.TOGGLE_HAS_SIDEBAR,
         !!this.sidebar_);
 
-    const actions = [
+    const sidebarActions = [
       {tagOrTarget: 'AMP-SIDEBAR', method: 'open'},
       {tagOrTarget: 'AMP-SIDEBAR', method: 'close'},
       {tagOrTarget: 'AMP-SIDEBAR', method: 'toggle'},
     ];
-    this.storeService_.dispatch(Action.ADD_TO_ACTIONS_WHITELIST, actions);
+    this.storeService_.dispatch(Action.ADD_TO_ACTIONS_WHITELIST, sidebarActions);
   }
 
   /**
