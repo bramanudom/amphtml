@@ -38,19 +38,17 @@
   </head>
 
   <body>
-    <amp-story standalone publisher="AMP Team" title="Visual Diff Test"
+    <amp-story
+        id="story"
+        standalone publisher="AMP Team" title="Visual Diff Test"
         publisher-logo-src="https://www.ampproject.org/static/img/icons/120.png"
         poster-portrait-src="https://picsum.photos/900/1600?image=981"
         poster-landscape-src="https://picsum.photos/1600/900?image=981"
         poster-square-src="https://picsum.photos/1600/1600?image=981">
       <amp-sidebar id="sidebar1" layout="nodisplay" >
         <ul>
-          <li>Nav item 1</li>
-          <li><a href="#idTwo" on="tap:idTwo.scrollTo">Nav item 2</a></li>
-          <li>Nav item 3</li>
-          <li><a href="#idFour" on="tap:idFour.scrollTo">Nav item 4</a></li>
-          <li>Nav item 5</li>
-          <li>Nav item 6</li>
+          <li on="tap:story.goToPage(id=page-2)">Link to Page 2 using action</li>
+          <li><a href="#page=page-2">Link to Page 2 using url fragment</a></li>
         </ul>
       </amp-sidebar>
       <amp-story-page id="cover">
