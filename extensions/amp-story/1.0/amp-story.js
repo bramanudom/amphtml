@@ -421,14 +421,6 @@ export class AmpStory extends AMP.BaseElement {
     }
   }
 
-  //   closeSidebar() {
-  //     function timeout(delay) {
-  //     return new Promise(function(resolve, reject) {
-  //         setTimeout(resolve, delay);
-  //     });
-  // }
-  //   }
-
   /** @override */
   pauseCallback() {
     this.pausedStateToRestore_ = !!this.storeService_
