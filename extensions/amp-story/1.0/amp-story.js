@@ -84,7 +84,6 @@ import {
   childElementByTag,
   childElements,
   closest,
-  closestAncestorElementBySelector,
   createElementWithAttributes,
   escapeCssSelectorIdent,
   isRTL,
@@ -405,15 +404,30 @@ export class AmpStory extends AMP.BaseElement {
 
     if (isExperimentOn(this.win, 'amp-story-branching')) {
       this.registerAction('goToPage', invocation => {
-        const {args} = invocation;
+        const {args, caller} = invocation;
+
         if (args) {
           this.storeService_.dispatch(
               Action.SET_ADVANCEMENT_MODE, AdvancementMode.GO_TO_PAGE);
-          this.switchTo_(args['id'], NavigationDirection.NEXT);
-        }
+
+          if (caller['offsetParent'].tagName === 'AMP-SIDEBAR') {
+            this.sidebar_.getImpl()
+                .then(sidebarImpl => sidebarImpl.close_())
+                .then(this.switchTo_(args['id'], NavigationDirection.NEXT))
+                .then(this.closeOpacityMask_());
+          }
+        } this.switchTo_(args['id'], NavigationDirection.NEXT);
       });
     }
   }
+
+  //   closeSidebar() {
+  //     function timeout(delay) {
+  //     return new Promise(function(resolve, reject) {
+  //         setTimeout(resolve, delay);
+  //     });
+  // }
+  //   }
 
   /** @override */
   pauseCallback() {
@@ -654,6 +668,13 @@ export class AmpStory extends AMP.BaseElement {
       }
     });
 
+    this.win.addEventListener('hashchange', () => {
+      const maybePageId = parseQueryString(this.win.location.hash)['page'];
+      if (this.isActualPage_(maybePageId)) {
+        this.switchTo_(maybePageId, NavigationDirection.NEXT);
+      }
+    });
+
     // TODO(#16795): Remove once the runtime triggers pause/resume callbacks
     // on document visibility change (eg: user switches tab).
     this.documentState_.onVisibilityChanged(() => this.onVisibilityChanged_());
@@ -890,10 +911,10 @@ export class AmpStory extends AMP.BaseElement {
     return firstPageEl.id;
   }
 
- /**
+  /**
   * Checks to see if a page ID refers to an actual page in the story.
-  * @param {!string} pageId
-  * @return {!boolean}
+  * @param {string} pageId
+  * @return {boolean}
   * @private
   */
   isActualPage_(pageId) {
@@ -2229,31 +2250,16 @@ export class AmpStory extends AMP.BaseElement {
     }
     if (isExperimentOn(this.win,'amp-story-branching')) {
       this.sidebar_.addEventListener('click', e => {
-        const actions = Services.actionServiceForDoc(this.element);
-
         if (e.target.tagName === 'A') {
-          const fragmentPageId =
-            parseQueryString(e.target.getAttribute('href'))['page'];
+          // Do not let the browser scroll
+          e.preventDefault();
 
-          if (this.isActualPage_(fragmentPageId)) {
-            this.switchTo_(fragmentPageId, NavigationDirection.NEXT);
-          }
-
+          this.win.location.hash = e.target.getAttribute('href');
+          const actions = Services.actionServiceForDoc(this.element);
           actions.execute(this.sidebar_, 'close', /* args */ null,
               /* source */ null, /* caller */ null, /* event */ null,
               ActionTrust.HIGH);
           this.closeOpacityMask_();
-
-        } else {
-          const actionTarget =
-            closestAncestorElementBySelector(
-              dev().assertElement(e.target), '[on*=goToPage]');
-          if (actionTarget) {
-            actions.execute(this.sidebar_, 'close', /* args */ null,
-                /* source */ null, /* caller */ null, /* event */ null,
-                ActionTrust.HIGH);
-            this.closeOpacityMask_();
-          }
         }
       });
     }
@@ -2271,7 +2277,8 @@ export class AmpStory extends AMP.BaseElement {
       {tagOrTarget: 'AMP-SIDEBAR', method: 'close'},
       {tagOrTarget: 'AMP-SIDEBAR', method: 'toggle'},
     ];
-    this.storeService_.dispatch(Action.ADD_TO_ACTIONS_WHITELIST, sidebarActions);
+    this.storeService_.dispatch(
+        Action.ADD_TO_ACTIONS_WHITELIST, sidebarActions);
   }
 
   /**
