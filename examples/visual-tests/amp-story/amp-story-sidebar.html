@@ -35,7 +35,7 @@
         poster-landscape-src="https://picsum.photos/1600/900?image=981"
         poster-square-src="https://picsum.photos/1600/1600?image=981">
       <amp-sidebar id="sidebar1" layout="nodisplay" >
-        <button on="tap:sidebar1.close"> close </button>
+        <button id="close-button" on="tap:sidebar1.close"> close </button>
         <ul>
           <li>Nav item 1</li>
           <li><a href="#idTwo" on="tap:idTwo.scrollTo">Nav item 2</a></li>
@@ -47,7 +47,6 @@
       </amp-sidebar>
       <amp-story-page id="cover">
         <amp-story-grid-layer template="fill">
-          <button on="tap:sidebar1.open"> open </button>
           <amp-video autoplay layout="fill" poster="https://picsum.photos/1600/900?image=980">
           </amp-video>
         </amp-story-grid-layer>

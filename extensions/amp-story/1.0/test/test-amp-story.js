@@ -755,33 +755,6 @@ describes.realWin('amp-story', {
                 .to.be.false;
           });
     });
-
-    it('should close sidebar mask with close action', () => {
-      createPages(story.element, 2, ['cover', 'page-1']);
-
-      const sidebar = win.document.createElement('amp-sidebar');
-      sidebar.setAttribute('id', 'sidebar1');
-      story.element.appendChild(sidebar);
-      const closeButton = createElementWithAttributes(win.document,
-                'button', {'on': 'tap:sidebar1.close'});
-      sidebar.appendChild(closeButton);
-     sandbox.stub(Services, 'actionServiceForDoc')
-          .returns({setWhitelist: () => {}, trigger: () => {},
-            execute: () => {sidebar.setAttribute('open', '');}});
-      story.buildCallback();
-      return story.layoutCallback()
-          .then(() => {
-            // const openButton = win.document.querySelector(
-            //        '.i-amphtml-story-sidebar-control.i-amphtml-story-button');
-            // openButton.click();
-            story.storeService_.dispatch(Action.TOGGLE_SIDEBAR, true);
-            const mask = story.element.querySelector(
-                '.i-amphtml-story-opacity-mask');
-            expect(mask.getAttribute('hidden')).to.be.null;
-            closeButton.click();
-            expect(mask).to.have.attribute('hidden');
-          });
-    });
   });
 
   describe('desktop attributes', () => {
