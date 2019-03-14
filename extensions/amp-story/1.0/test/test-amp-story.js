@@ -760,15 +760,21 @@ describes.realWin('amp-story', {
       createPages(story.element, 2, ['cover', 'page-1']);
 
       const sidebar = win.document.createElement('amp-sidebar');
+      sidebar.setAttribute('id', 'sidebar1');
       story.element.appendChild(sidebar);
+      const closeButton = createElementWithAttributes(win.document,
+                'button', {'on': 'tap:sidebar1.close'});
+      sidebar.appendChild(closeButton);
 
       story.buildCallback();
       return story.layoutCallback()
           .then(() => {
-            story.storeService_.dispatch(Action.TOGGLE_SIDEBAR, false);
-          }).then(() => {
+            const openButton = win.document.querySelector(
+                    '.i-amphtml-story-sidebar-control.i-amphtml-story-button');
+            openButton.click();
             const mask = story.element.querySelector(
                 '.i-amphtml-story-opacity-mask');
+            closeButton.click();
             expect(mask).to.have.attribute('hidden');
           });
     });

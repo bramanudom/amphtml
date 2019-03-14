@@ -1623,8 +1623,8 @@ export class AmpStory extends AMP.BaseElement {
             if (mutation.attributeName === 'open') {
               this.storeService_.dispatch(Action.TOGGLE_SIDEBAR,
                   this.sidebar_.hasAttribute('open'));
-            } else if (mutation.attributeName === 'hidden') {
-              this.storeService_.dispatch(Action.TOGGLE_SIDEBAR, false);
+            // } else if (mutation.attributeName === 'hidden') {
+            //   this.storeService_.dispatch(Action.TOGGLE_SIDEBAR, false);
             }
           });
         });
@@ -1635,10 +1635,8 @@ export class AmpStory extends AMP.BaseElement {
         actions.execute(this.sidebar_, 'open', /* args */ null,
             /* source */ null, /* caller */ null, /* event */ null,
             ActionTrust.HIGH);
-      } else if (this.sidebar_ && !sidebarState &&
-                    !this.maskElement_.hasAttribute('hidden')) {
-        this.closeOpacityMask_();
       } else {
+        this.closeOpacityMask_();
         this.sidebarObserver_.disconnect();
       }
     } else if (this.sidebar_ && sidebarState) {
